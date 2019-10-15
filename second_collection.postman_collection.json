@@ -7,6 +7,31 @@
 	"item": [
 		{
 			"name": "Тест на получение накладных, отфильтрованных по значению поля",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "092ed7de-208b-43b1-8b1d-3856f27962e7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"test response\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var key = pm.variables.get(\"key\");",
+							"    var value = pm.variables.get(\"value\");",
+							"    ",
+							"    for (var i = 0; i < jsonData.length; i++){",
+							"        pm.expect(jsonData[i][key]).to.eql(value);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
